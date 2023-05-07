@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.parts.mapper.BalpPartsMapper">
+    
+    <resultMap type="BalpParts" id="BalpPartsResult">
+        <result property="id"    column="id"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="partsName"    column="parts_name"    />
+        <result property="partsNo"    column="parts_no"    />
+        <result property="modelNo"    column="model_no"    />
+        <result property="number"    column="number"    />
+        <result property="version"    column="version"    />
+        <result property="sort"    column="sort"    />
+        <result property="dealShop"    column="deal_shop"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectBalpPartsVo">
+        select id, project_id, parts_name, parts_no, model_no, number, version, sort, deal_shop, create_by, create_time, update_by, update_time, remark from balp_parts
+    </sql>
+
+    <select id="selectBalpPartsList" parameterType="BalpParts" resultMap="BalpPartsResult">
+        <include refid="selectBalpPartsVo"/>
+        <where>  
+            <if test="id != null  and id != ''"> and id = #{id}</if>
+            <if test="projectId != null  and projectId != ''"> and project_id like concat('%', #{projectId}, '%')</if>
+            <if test="partsName != null  and partsName != ''"> and parts_name like concat('%', #{partsName}, '%')</if>
+            <if test="partsNo != null  and partsNo != ''"> and parts_no = #{partsNo}</if>
+            <if test="modelNo != null  and modelNo != ''"> and model_no = #{modelNo}</if>
+            <if test="number != null "> and number = #{number}</if>
+            <if test="version != null  and version != ''"> and version = #{version}</if>
+            <if test="sort != null  and sort != ''"> and sort = #{sort}</if>
+            <if test="dealShop != null  and dealShop != ''"> and deal_shop like concat('%', #{dealShop}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectBalpPartsById" parameterType="String" resultMap="BalpPartsResult">
+        <include refid="selectBalpPartsVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertBalpParts" parameterType="BalpParts">
+        insert into balp_parts
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">id,</if>
+            <if test="projectId != null">project_id,</if>
+            <if test="partsName != null and partsName != ''">parts_name,</if>
+            <if test="partsNo != null and partsNo != ''">parts_no,</if>
+            <if test="modelNo != null and modelNo != ''">model_no,</if>
+            <if test="number != null">number,</if>
+            <if test="version != null">version,</if>
+            <if test="sort != null">sort,</if>
+            <if test="dealShop != null and dealShop != ''">deal_shop,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">#{id},</if>
+            <if test="projectId != null">#{projectId},</if>
+            <if test="partsName != null and partsName != ''">#{partsName},</if>
+            <if test="partsNo != null and partsNo != ''">#{partsNo},</if>
+            <if test="modelNo != null and modelNo != ''">#{modelNo},</if>
+            <if test="number != null">#{number},</if>
+            <if test="version != null">#{version},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="dealShop != null and dealShop != ''">#{dealShop},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBalpParts" parameterType="BalpParts">
+        update balp_parts
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectId != null">project_id = #{projectId},</if>
+            <if test="partsName != null and partsName != ''">parts_name = #{partsName},</if>
+            <if test="partsNo != null and partsNo != ''">parts_no = #{partsNo},</if>
+            <if test="modelNo != null and modelNo != ''">model_no = #{modelNo},</if>
+            <if test="number != null">number = #{number},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="dealShop != null and dealShop != ''">deal_shop = #{dealShop},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBalpPartsById" parameterType="String">
+        delete from balp_parts where id = #{id}
+    </delete>
+
+    <delete id="deleteBalpPartsByIds" parameterType="String">
+        delete from balp_parts where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

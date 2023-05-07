@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.balp.mapper.BalpProjectMapper">
+    
+    <resultMap type="BalpProject" id="BalpProjectResult">
+        <result property="id"    column="id"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="projectName"    column="project_name"    />
+        <result property="customer"    column="customer"    />
+        <result property="offerNode"    column="offer_node"    />
+        <result property="offerStatus"    column="offer_status"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectBalpProjectVo">
+        select id, project_id, project_name, customer, offer_node, offer_status, create_by, create_time, update_by, update_time, remark from balp_project
+    </sql>
+
+    <select id="selectBalpProjectList" parameterType="BalpProject" resultMap="BalpProjectResult">
+        <include refid="selectBalpProjectVo"/>
+        <where>  
+            <if test="projectId != null  and projectId != ''"> and project_id like concat('%', #{projectId}, '%')</if>
+            <if test="projectName != null  and projectName != ''"> and project_name like concat('%', #{projectName}, '%')</if>
+            <if test="customer != null  and customer != ''"> and customer like concat('%', #{customer}, '%')</if>
+            <if test="offerNode != null "> and offer_node = #{offerNode}</if>
+            <if test="offerStatus != null  and offerStatus != ''"> and offer_status = #{offerStatus}</if>
+        </where>
+    </select>
+    
+    <select id="selectBalpProjectById" parameterType="Long" resultMap="BalpProjectResult">
+        <include refid="selectBalpProjectVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertBalpProject" parameterType="BalpProject" useGeneratedKeys="true" keyProperty="id">
+        insert into balp_project
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="projectId != null and projectId != ''">project_id,</if>
+            <if test="projectName != null and projectName != ''">project_name,</if>
+            <if test="customer != null and customer != ''">customer,</if>
+            <if test="offerNode != null">offer_node,</if>
+            <if test="offerStatus != null and offerStatus != ''">offer_status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="projectId != null and projectId != ''">#{projectId},</if>
+            <if test="projectName != null and projectName != ''">#{projectName},</if>
+            <if test="customer != null and customer != ''">#{customer},</if>
+            <if test="offerNode != null">#{offerNode},</if>
+            <if test="offerStatus != null and offerStatus != ''">#{offerStatus},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBalpProject" parameterType="BalpProject">
+        update balp_project
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectId != null and projectId != ''">project_id = #{projectId},</if>
+            <if test="projectName != null and projectName != ''">project_name = #{projectName},</if>
+            <if test="customer != null and customer != ''">customer = #{customer},</if>
+            <if test="offerNode != null">offer_node = #{offerNode},</if>
+            <if test="offerStatus != null and offerStatus != ''">offer_status = #{offerStatus},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBalpProjectById" parameterType="Long">
+        delete from balp_project where id = #{id}
+    </delete>
+
+    <delete id="deleteBalpProjectByIds" parameterType="String">
+        delete from balp_project where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
