@@ -132,7 +132,7 @@
             type="text"
             icon="el-icon-zoom-in"
             @click="handleList(scope.row)"
-            v-hasPermi="['balp:project:remove']"
+            v-hasPermi="['balp:project:list']"
           >列表</el-button>
         </template>
       </el-table-column>
@@ -308,7 +308,7 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加项目管理";
+      this.title = "添加项目";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
@@ -317,7 +317,7 @@ export default {
       getProject(id).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改项目管理";
+        this.title = "修改项目";
       });
     },
     /** 提交按钮 */
@@ -343,7 +343,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const ids = row.id || this.ids;
-      this.$modal.confirm('是否确认删除项目管理编号为"' + ids + '"的数据项？').then(function() {
+      this.$modal.confirm('是否确认删除项目编号为"' + ids + '"的数据项？').then(function() {
         return delProject(ids);
       }).then(() => {
         this.getList();
@@ -353,7 +353,9 @@ export default {
     /** 列表按钮操作 */
     handleList(row){
       const ids = row.id || this.ids;
-      this.$router.push("/balp/project" + ids)
+
+      this.$router.push("/balp/parts" + ids);
+
     },
 
     /** 导出按钮操作 */
