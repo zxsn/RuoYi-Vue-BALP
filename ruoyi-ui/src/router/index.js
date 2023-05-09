@@ -162,7 +162,21 @@ export const dynamicRoutes = [
       }
     ]
   },
+  /*{
+    path: '/balp/project',
+    component: Layout,
+    hidden: true,
+    permissions: ['balp:parts:list'],
+    children: [
+      {
+        path: 'index/:projectId(\\w+)',
+        component: () => import('@/views/balp/project/data'),
+        name: 'Data',
+        meta: {title: '项目列表',activeMenu:'/balp/project'}
+      }
+    ]
 
+  }*/
 
 
 ]

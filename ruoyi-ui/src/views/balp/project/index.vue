@@ -352,7 +352,7 @@ export default {
     },
     /** 列表按钮操作 */
     handleList(row){
-      const ids = row.id || this.ids;
+      const ids = row.projectId || this.ids;
 
       this.$router.push("/balp/parts" + ids);
 
