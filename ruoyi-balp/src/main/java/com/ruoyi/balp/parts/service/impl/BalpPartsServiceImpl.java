@@ -1,12 +1,13 @@
-package com.ruoyi.parts.service.impl;
+package com.ruoyi.balp.parts.service.impl;
 
 import java.util.List;
+
+import com.ruoyi.balp.parts.domain.BalpParts;
+import com.ruoyi.balp.parts.mapper.BalpPartsMapper;
+import com.ruoyi.balp.parts.service.IBalpPartsService;
 import com.ruoyi.common.utils.DateUtils;
-import com.ruoyi.parts.domain.BalpParts;
-import com.ruoyi.parts.mapper.BalpPartsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.parts.service.IBalpPartsService;
 
 /**
  * 零组件Service业务层处理
@@ -15,7 +16,7 @@ import com.ruoyi.parts.service.IBalpPartsService;
  * @date 2023-05-07
  */
 @Service
-public class BalpPartsServiceImpl implements IBalpPartsService 
+public class BalpPartsServiceImpl implements IBalpPartsService
 {
     @Autowired
     private BalpPartsMapper balpPartsMapper;

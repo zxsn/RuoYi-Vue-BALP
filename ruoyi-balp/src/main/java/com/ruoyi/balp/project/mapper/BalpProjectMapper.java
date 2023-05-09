@@ -1,7 +1,7 @@
-package com.ruoyi.balp.mapper;
+package com.ruoyi.balp.project.mapper;
 
 import java.util.List;
-import com.ruoyi.balp.domain.BalpProject;
+import com.ruoyi.balp.project.domain.BalpProject;
 
 /**
  * 项目管理Mapper接口

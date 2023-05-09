@@ -1,7 +1,8 @@
-package com.ruoyi.parts.service;
+package com.ruoyi.balp.parts.service;
 
 import java.util.List;
-import com.ruoyi.parts.domain.BalpParts;
+
+import com.ruoyi.balp.parts.domain.BalpParts;
 
 /**
  * 零组件Service接口

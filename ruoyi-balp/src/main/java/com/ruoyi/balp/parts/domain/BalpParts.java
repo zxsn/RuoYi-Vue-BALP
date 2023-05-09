@@ -1,4 +1,4 @@
-package com.ruoyi.parts.domain;
+package com.ruoyi.balp.parts.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

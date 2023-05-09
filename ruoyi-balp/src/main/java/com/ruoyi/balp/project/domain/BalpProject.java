@@ -1,4 +1,4 @@
-package com.ruoyi.balp.domain;
+package com.ruoyi.balp.project.domain;
 
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;

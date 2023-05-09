@@ -1,7 +1,7 @@
-package com.ruoyi.balp.service;
+package com.ruoyi.balp.project.service;
 
 import java.util.List;
-import com.ruoyi.balp.domain.BalpProject;
+import com.ruoyi.balp.project.domain.BalpProject;
 
 /**
  * 项目管理Service接口

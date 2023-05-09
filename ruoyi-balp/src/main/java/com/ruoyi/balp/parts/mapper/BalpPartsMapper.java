@@ -1,7 +1,8 @@
-package com.ruoyi.parts.mapper;
+package com.ruoyi.balp.parts.mapper;
 
 import java.util.List;
-import com.ruoyi.parts.domain.BalpParts;
+
+import com.ruoyi.balp.parts.domain.BalpParts;
 
 /**
  * 零组件Mapper接口
