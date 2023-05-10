@@ -354,7 +354,7 @@ export default {
     handleList(row){
       const ids = row.projectId || this.ids;
 
-      this.$router.push("/balp/parts" + ids);
+      this.$router.push({path: 'parts', query: row});
 
     },
 
