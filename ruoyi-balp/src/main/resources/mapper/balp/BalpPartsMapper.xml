@@ -22,14 +22,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectBalpPartsVo">
-        select id, project_id, parts_name, parts_no, model_no, number, version, sort, deal_shop, create_by, create_time, update_by, update_time, remark from balp_parts
+        select id, seqno, project_id, parts_name, parts_no, model_no, number, version, sort, deal_shop, create_by, create_time, update_by, update_time, remark from balp_parts
     </sql>
 
     <select id="selectBalpPartsList" parameterType="BalpParts" resultMap="BalpPartsResult">
         <include refid="selectBalpPartsVo"/>
-        <where>  
-            <if test="id != null  and id != ''"> and id = #{id}</if>
-            <if test="projectId != null  and projectId != ''"> and project_id like concat('%', #{projectId}, '%')</if>
+        <where>
+            <if test="seqno != null  and id != ''"> and seqno = #{seqno}</if>
+            <if test="projectId != null  and projectId != ''"> and project_id = #{projectId}</if>
             <if test="partsName != null  and partsName != ''"> and parts_name like concat('%', #{partsName}, '%')</if>
             <if test="partsNo != null  and partsNo != ''"> and parts_no = #{partsNo}</if>
             <if test="modelNo != null  and modelNo != ''"> and model_no = #{modelNo}</if>
@@ -49,6 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into balp_parts
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null and id != ''">id,</if>
+            <if test="seqno != null and seqno != ''">seqno,</if>
             <if test="projectId != null">project_id,</if>
             <if test="partsName != null and partsName != ''">parts_name,</if>
             <if test="partsNo != null and partsNo != ''">parts_no,</if>
@@ -65,6 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null and id != ''">#{id},</if>
+            <if test="seqno != null and seqno != ''">#{seqno},</if>
             <if test="projectId != null">#{projectId},</if>
             <if test="partsName != null and partsName != ''">#{partsName},</if>
             <if test="partsNo != null and partsNo != ''">#{partsNo},</if>
@@ -84,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateBalpParts" parameterType="BalpParts">
         update balp_parts
         <trim prefix="SET" suffixOverrides=",">
-            <if test="projectId != null">project_id = #{projectId},</if>
+            <if test="seqno != null">seqno = #{seqno},</if>
             <if test="partsName != null and partsName != ''">parts_name = #{partsName},</if>
             <if test="partsNo != null and partsNo != ''">parts_no = #{partsNo},</if>
             <if test="modelNo != null and modelNo != ''">model_no = #{modelNo},</if>

@@ -16,8 +16,11 @@ public class BalpParts extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 序号 */
+    @Excel(name = "主键")
+    private Integer id;
+
     @Excel(name = "序号")
-    private String id;
+    private String seqno;
 
     /** 项目编号 */
     @Excel(name = "项目编号")
@@ -51,12 +54,33 @@ public class BalpParts extends BaseEntity
     @Excel(name = "分配车间")
     private String dealShop;
 
-    public void setId(String id) 
+    private String updateBy;
+
+    @Override
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    @Override
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    public void setId(Integer id)
     {
         this.id = id;
     }
 
-    public String getId() 
+
+    public String getSeqno() {
+        return seqno;
+    }
+
+    public void setSeqno(String seqno) {
+        this.seqno = seqno;
+    }
+
+    public Integer getId()
     {
         return id;
     }
@@ -137,6 +161,7 @@ public class BalpParts extends BaseEntity
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("id", getId())
+            .append("seqno",getSeqno())
             .append("projectId", getProjectId())
             .append("partsName", getPartsName())
             .append("partsNo", getPartsNo())

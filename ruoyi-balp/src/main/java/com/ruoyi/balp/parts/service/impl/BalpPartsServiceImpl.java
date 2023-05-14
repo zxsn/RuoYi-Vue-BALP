@@ -67,7 +67,7 @@ public class BalpPartsServiceImpl implements IBalpPartsService
     @Override
     public int updateBalpParts(BalpParts balpParts)
     {
-        balpParts.setUpdateTime(DateUtils.getNowDate());
+//        balpParts.setUpdateTime(DateUtils.getNowDate());
         return balpPartsMapper.updateBalpParts(balpParts);
     }
 
