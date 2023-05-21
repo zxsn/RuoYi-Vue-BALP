@@ -278,6 +278,9 @@
       @pagination="getList"
     />
 
+
+
+
     <!-- 添加或修改零组件对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="auto">
@@ -338,12 +341,12 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="序号" prop="seqno">
-              <el-input v-model="external.seqno" placeholder="请输入序号"/>
+              <el-input v-model="external.seqno" disabled placeholder="请输入序号"/>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="零组件名称" prop="partsName">
-              <el-input v-model="external.partsName" placeholder="请输入零组件名称"/>
+              <el-input v-model="external.partsName" disabled placeholder="请输入零组件名称"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -351,21 +354,32 @@
         <!--        <el-form-item label="项目编号" prop="projectId">-->
         <!--          <el-input v-model="form.projectId" placeholder="请输入项目编号" />-->
         <!--        </el-form-item>-->
-
+        <el-row>
+          <el-col :span="12">
         <el-form-item label="零组件号" prop="partsNo">
-          <el-input v-model="external.partsNo" placeholder="请输入零组件号"/>
+          <el-input v-model="external.partsNo" disabled placeholder="请输入零组件号"/>
         </el-form-item>
+          </el-col>
+          <el-col :span="12">
         <el-form-item label="模型号" prop="modelNo">
-          <el-input v-model="external.modelNo" placeholder="请输入模型号"/>
+          <el-input v-model="external.modelNo" disabled placeholder="请输入模型号"/>
         </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
         <el-form-item label="数量" prop="number">
-          <el-input v-model="external.number" placeholder="请输入数量"/>
+          <el-input v-model="external.number" disabled placeholder="请输入数量"/>
         </el-form-item>
+          </el-col>
+        <el-col :span="12">
         <el-form-item label="版次" prop="version">
-          <el-input v-model="external.version" placeholder="请输入版次"/>
+          <el-input v-model="external.version" disabled placeholder="请输入版次"/>
         </el-form-item>
+        </el-col>
+        </el-row>
         <el-form-item label="分类" prop="sort">
-          <el-select v-model="external.sort" placeholder="请选择分类" style="width: 100%" clearable>
+          <el-select v-model="external.sort" disabled placeholder="请选择分类" style="width: 100%" clearable>
             <el-option
               v-for="dict in dict.type.sys_parts_classfication"
               :key="dict.value"
@@ -375,7 +389,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="分配车间" prop="dealShop">
-          <el-select v-model="external.dealShop" placeholder="请选择分配车间" style="width: 100%" clearable>
+          <el-select v-model="external.dealShop" disabled placeholder="请选择分配车间" style="width: 100%" clearable>
             <el-option
               v-for="dict in dict.type.sys_deal_shop"
               :key="dict.value"
@@ -395,7 +409,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="负责询价部门" prop="inquiryDept">
-          <el-select v-model="external.inquiryDept" placeholder="请选择负责询价部门" style="width: 100%" clearable>
+          <el-select v-model="external.inquiryDept" placeholder="请选择负责询价部门" style="width: 100%">
             <el-option
               v-for="dict in dict.type.sys_inquiry_dept"
               :key="dict.value"

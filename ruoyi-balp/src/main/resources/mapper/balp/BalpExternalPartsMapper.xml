@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.balp.mapper.BalpExternalPartsMapper">
+
+    <resultMap type="BalpExternalParts" id="BalpExternalPartsResult">
+        <result property="seqno"    column="seqno"    />
+        <result property="externalParts"    column="external_parts"    />
+        <result property="inquiryDept"    column="inquiry_dept"    />
+        <result property="unitPrice"    column="unit_price"    />
+    </resultMap>
+
+    <sql id="selectBalpExternalPartsVo">
+        select seqno, external_parts, inquiry_dept, unit_price from balp_external_parts
+    </sql>
+
+    <select id="selectBalpExternalPartsList" parameterType="BalpExternalParts" resultMap="BalpExternalPartsResult">
+        <include refid="selectBalpExternalPartsVo"/>
+        <where>
+        </where>
+    </select>
+
+    <select id="selectBalpExternalPartsBySeqno" parameterType="String" resultMap="BalpExternalPartsResult">
+        <include refid="selectBalpExternalPartsVo"/>
+        where seqno = #{seqno}
+    </select>
+
+    <insert id="insertBalpExternalParts" parameterType="BalpExternalParts">
+        insert into balp_external_parts
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="seqno != null and seqno != ''">seqno,</if>
+            <if test="externalParts != null">external_parts,</if>
+            <if test="inquiryDept != null">inquiry_dept,</if>
+            <if test="unitPrice != null">unit_price,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="seqno != null and seqno != ''">#{seqno},</if>
+            <if test="externalParts != null">#{externalParts},</if>
+            <if test="inquiryDept != null">#{inquiryDept},</if>
+            <if test="unitPrice != null">#{unitPrice},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBalpExternalParts" parameterType="BalpExternalParts">
+        update balp_external_parts
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="externalParts != null">external_parts = #{externalParts},</if>
+            <if test="inquiryDept != null">inquiry_dept = #{inquiryDept},</if>
+            <if test="unitPrice != null">unit_price = #{unitPrice},</if>
+        </trim>
+        where seqno = #{seqno}
+    </update>
+
+    <delete id="deleteBalpExternalPartsBySeqno" parameterType="String">
+        delete from balp_external_parts where seqno = #{seqno}
+    </delete>
+
+    <delete id="deleteBalpExternalPartsBySeqnos" parameterType="String">
+        delete from balp_external_parts where seqno in
+        <foreach item="seqno" collection="array" open="(" separator="," close=")">
+            #{seqno}
+        </foreach>
+    </delete>
+</mapper>
